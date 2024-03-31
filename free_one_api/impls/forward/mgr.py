@@ -201,7 +201,7 @@ class ForwardManager(forwardmgr.AbsForwardManager):
             record.error = e
             record.success = False
             
-            logging.warning("Exception should be processed by adapter but caught by forward manager:")
+            logging.warning("Exception should be processed by adapter but caught by forward manager:"+str(e))
             # check for other error
             return quart.jsonify({
                 "error": {
