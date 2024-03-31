@@ -22,7 +22,7 @@ class QianWenAdapter(llm.LLMLibAdapter):
     
     @classmethod
     def description(self) -> str:
-        return "Use xw5xr6/revTongYi to access Aliyun TongYi QianWen."
+        return "Use leeeduke/revTongYi to access Aliyun TongYi QianWen."
 
     def supported_models(self) -> list[str]:
         return [
@@ -48,7 +48,7 @@ You should provide cookie string as `cookie` in config:
     "cookie": "your cookie string"
 }
 
-Method of getting cookie string, please refer to https://github.com/xw5xr6/revTongYi
+Method of getting cookie string, please refer to https://github.com/leeeduke/revTongYi
 """
 
     @classmethod
@@ -66,12 +66,14 @@ Method of getting cookie string, please refer to https://github.com/xw5xr6/revTo
         
     async def test(self) -> (bool, str):
         try:
-            self.chatbot.create_session("Hello, reply 'hi' only.")
+            # self.chatbot.create_session("Hello, reply 'hi' only.")
+            self.chatbot.sessionId = ""
             resp = self.chatbot.ask(
                 "Hello, reply 'hi' only.",
+                sessionId=""
             )
             
-            self.chatbot.delete_session(self.chatbot.sessionId)
+            self.chatbot.delete_session(resp.sessionId)
             
             return True, ""
         except Exception as e:
@@ -89,22 +91,30 @@ Method of getting cookie string, please refer to https://github.com/xw5xr6/revTo
         random_int = random.randint(0, 1000000000)
         
         prev_text = ""
-        self.chatbot.create_session(prompt)
+
+        sessionId = ""
+
+        self.chatbot.sessionId = ""
         
         for resp in self.chatbot.ask(
             prompt=prompt,
+            sessionId="",
             stream=True,
         ):
+            if resp.contents == None or len(resp.contents) == 0:
+                continue
+
+            sessionId = resp.sessionId
             
             yield response.Response(
                 id=random_int,
                 finish_reason=response.FinishReason.NULL,
-                normal_message=resp['content'][0].replace(prev_text, ""),
+                normal_message=resp.contents[0].content.replace(prev_text, ""),
                 function_call=None
             )
-            prev_text = resp['content'][0]
+            prev_text = resp.contents[0].content
         
-        self.chatbot.delete_session(self.chatbot.sessionId)
+        self.chatbot.delete_session(sessionId)
         
         yield response.Response(
             id=random_int,
