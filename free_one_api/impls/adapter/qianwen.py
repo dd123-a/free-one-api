@@ -64,7 +64,7 @@ Method of getting cookie string, please refer to https://github.com/leeeduke/rev
             cookies_str=config['cookie']
         )
         
-    async def test(self) -> (bool, str):
+    async def test(self) -> typing.Union[bool, str]:
         try:
             # self.chatbot.create_session("Hello, reply 'hi' only.")
             self.chatbot.sessionId = ""

@@ -67,7 +67,7 @@ Method of getting cookie string, please refer to https://github.com/KoushikNavul
         self.config = config
         self.eval = eval
         
-    async def test(self) -> (bool, str):
+    async def test(self) -> typing.Union[bool, str]:
         try:
             conversation_id = self.chatbot.create_new_chat()['uuid']
             response = self.chatbot.send_message("Hello, Claude!", conversation_id)

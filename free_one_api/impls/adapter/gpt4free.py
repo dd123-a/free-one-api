@@ -199,7 +199,7 @@ Please refer to https://github.com/xtekky/gpt4free
         if self._use_provider is None:
             raise exceptions.QueryHandlingError(404, "no_provider_found", "No provider available.")
 
-    async def test(self) -> (bool, str):
+    async def test(self) -> typing.Union[bool, str]:
         try:
             await self._select_provider()
             resp = await g4f.ChatCompletion.create_async(

@@ -82,7 +82,7 @@ class LLMLibAdapter(metaclass=abc.ABCMeta):
         return self.config
 
     @abc.abstractmethod
-    async def test(self) -> (bool, str):
+    async def test(self) -> typing.Union[bool, str]:
         """Test the adapter.
         
         Returns:

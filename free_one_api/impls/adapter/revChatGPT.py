@@ -119,7 +119,7 @@ Please refer to https://github.com/acheong08/ChatGPT
         self.reverse_proxy = reverse_proxy
         self.auto_ignore_duplicated = auto_ignore_duplicated
     
-    async def test(self) -> (bool, str):
+    async def test(self) -> typing.Union[bool, str]:
         conversation_id = ""
         try:
             prev_text = ""

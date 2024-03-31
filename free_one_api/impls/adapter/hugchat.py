@@ -78,7 +78,7 @@ Please refer to https://github.com/Soulter/hugging-chat-api
         self.config = config
         self.eval = eval
     
-    async def test(self) -> (bool, str):
+    async def test(self) -> typing.Union[bool, str]:
         try:
             self.chatbot.change_conversation(self.chatbot.new_conversation())
             for data in self.chatbot.query(
