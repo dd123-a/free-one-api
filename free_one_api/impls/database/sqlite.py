@@ -1,5 +1,6 @@
 import os
 import json
+import logging
 
 import aiosqlite
 
@@ -54,15 +55,24 @@ class SQLiteDB(dbmod.DatabaseInterface):
         async with aiosqlite.connect(self.db_path) as db:
             async with db.execute("SELECT * FROM channel") as cursor:
                 rows = await cursor.fetchall()
-                return [channel.Channel(
-                    id=row[0],
-                    name=row[1],
-                    adapter=adapter.load_adapter(json.loads(row[2]), eval),
-                    model_mapping=json.loads(row[3]),
-                    enabled=bool(row[4]),
-                    latency=row[5],
-                    eval=evl.ChannelEvaluation(),
-                ) for row in rows]
+
+                channels = []
+
+                for row in rows:
+                    try:
+                        channels.append(channel.Channel(
+                            id=row[0],
+                            name=row[1],
+                            adapter=adapter.load_adapter(json.loads(row[2]), eval),
+                            model_mapping=json.loads(row[3]),
+                            enabled=bool(row[4]),
+                            latency=row[5],
+                            eval=evl.ChannelEvaluation(),
+                        ))
+                    except Exception as e:
+                        logging.error(f"Error loading channel {row[0]}: {e}")
+
+                return channels
 
     async def insert_channel(self, chan: channel.Channel) -> None:
         async with aiosqlite.connect(self.db_path) as db:
