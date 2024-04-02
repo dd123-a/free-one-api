@@ -118,3 +118,23 @@ Aliyun TongYi QianWen official website reverse engineering library
   "cookie": "通义千问cookie"
 }
 ```
+
+## Zai-Kun/reverse-engineered-chatgpt
+
+ChatGPT official website reverse engineering library, this is newer. acheong08/ChatGPT is no longer maintained.
+
+### Configuration
+
+1. Select `Zai-Kun/reverse-engineered-chatgpt` as `Adapter`
+
+2. Go to`chat.openai.com` and log in to your account
+
+3. Take the value of `__Secure-next-auth.session-token` from Cookies as `session_token`
+
+4. Enter in the `Config` column
+
+```json
+{
+  "session_token": "your session token"
+}
+```
