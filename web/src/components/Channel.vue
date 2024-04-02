@@ -79,6 +79,7 @@ const adapter_color = {
     "acheong08/EdgeGPT": "#0388FF",
     "Soulter/hugging-chat-api": "#FFBB03",
     "xw5xr6/revTongYi": "#4040C0",
+    "Zai-Kun/reverse-engineered-chatgpt": "#00CC90",
 }
 
 function deleteChannelConfirmed(channel_id) {

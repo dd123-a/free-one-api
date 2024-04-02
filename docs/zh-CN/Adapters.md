@@ -119,3 +119,22 @@ huggingface.co/chat 官网逆向工程库
 }
 ```
 
+## Zai-Kun/reverse-engineered-chatgpt
+
+ChatGPT 官网逆向工程库，这个新一点。acheong08/ChatGPT 已经不维护了。
+
+### 配置方式
+
+1. 选择 `Zai-Kun/reverse-engineered-chatgpt` 作为 `Adapter`
+
+2. 前往 `chat.openai.com` 登录账号
+
+3. 从 Cookies 中取出 `__Secure-next-auth.session-token` 的值作为 `session_token`
+
+4. 在 `Config` 栏中输入
+
+```json
+{
+  "session_token": "你的session token"
+}
+```
