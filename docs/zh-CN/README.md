@@ -1,5 +1,7 @@
 # Free One API 中文文档
 
+放心大胆用，[老佛爷已经付过钱](https://zh.wikipedia.org/wiki/%E6%85%88%E7%A6%A7%E5%A4%AA%E5%90%8E#%E5%85%89%E7%B7%92%E6%99%82%E6%9C%9F)了。
+
 ## 支持的 LLM 库
 
 |Adapter|Multi Round|Stream|Function Call|Comment|
