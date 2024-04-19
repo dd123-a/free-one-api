@@ -14,7 +14,7 @@
 <a href="https://hub.docker.com/repository/docker/rockchin/free-one-api">
     <img src="https://img.shields.io/docker/pulls/rockchin/free-one-api?color=green" alt="docker pull">
   </a>
-![Wakapi Count](https://wakapi.dev/api/badge/RockChinQ/interval:any/project:free-one-api)
+![Wakapi Count](https://wakapi.rockchin.top/api/badge/RockChinQ/interval:any/project:free-one-api)
 
 </div>
 
