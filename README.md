@@ -55,3 +55,7 @@
 
 - GitHub Page: https://rockchinq.github.io/free-one-api
 - 自部署文档：https://free-one-api.rockchin.top
+
+## 社区
+
+有问题、逆向交流、功能建议、参与贡献，加QQ群：545300750
