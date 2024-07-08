@@ -1,2 +1,0 @@
-class TianGongProtocalError(Exception):
-    pass
