@@ -209,7 +209,7 @@ async def make_application(config_path: str) -> Application:
         "Soulter_hugging-chat-api": hugchat.HuggingChatAdapter,
         "xw5xr6_revTongYi": qianwen.QianWenAdapter,
         "DrTang": tiangong.tiangong,
-        # "Zai-Kun_reverse-engineered-chatgpt": re_gpt.ReGPTAdapter,
+        "Zai-Kun_reverse-engineered-chatgpt": re_gpt.ReGPTAdapter,
     }
 
     for adapter_name in adapter_config_mapping:
