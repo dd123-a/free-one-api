@@ -23,7 +23,7 @@ from .adapter import gpt4free
 from .adapter import hugchat
 from .adapter import qianwen
 from .adapter import tiangong
-from .adapter import re_gpt
+# from .adapter import re_gpt
 
 from . import log
 from . import cfg as cfgutil
@@ -209,7 +209,7 @@ async def make_application(config_path: str) -> Application:
         "Soulter_hugging-chat-api": hugchat.HuggingChatAdapter,
         "xw5xr6_revTongYi": qianwen.QianWenAdapter,
         "DrTang": tiangong.tiangong,
-        "Zai-Kun_reverse-engineered-chatgpt": re_gpt.ReGPTAdapter,
+        # "Zai-Kun_reverse-engineered-chatgpt": re_gpt.ReGPTAdapter,
     }
 
     for adapter_name in adapter_config_mapping:
