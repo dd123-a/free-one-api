@@ -23,7 +23,7 @@ from .adapter import gpt4free
 from .adapter import hugchat
 from .adapter import qianwen
 from .adapter import tiangong
-# from .adapter import re_gpt
+from .adapter import re_gpt
 
 from . import log
 from . import cfg as cfgutil
