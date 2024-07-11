@@ -4,7 +4,7 @@ import traceback
 import uuid
 import random
 
-import revTianGong.tiangong as tiangong
+import revkimi.kimichat as kimi
 
 from free_one_api.entities import request, response
 
@@ -15,15 +15,15 @@ from ...models.channel import evaluation
 
 
 @adapter.llm_adapter
-class TianGongAdapter(llm.LLMLibAdapter):
+class KimiAdapter(llm.LLMLibAdapter):
 
     @classmethod
     def name(cls) -> str:
-        return "DrTang/revTiangong"
+        return "DrTang/revKimi"
 
     @classmethod
     def description(self) -> str:
-        return "suck my dick"
+        return "suck my pussy"
 
     def supported_models(self) -> list[str]:
         return [
@@ -69,19 +69,22 @@ class TianGongAdapter(llm.LLMLibAdapter):
     def supported_path(cls) -> str:
         return "/v1/chat/completions"
 
-    chatbot: tiangong.Chatbot
+    chatbot: kimi.Chatbot
 
     def __init__(self, config: dict, eval: evaluation.AbsChannelEvaluation):
         self.config = config
         self.eval = eval
-        self.chatbot = tiangong.Chatbot(
+        self.chatbot = kimi.Chatbot(
             cookies_str=config['cookie']
         )
 
     async def test(self) -> typing.Union[bool, str]:
         try:
-            resp =await self.chatbot.ask(
-                prompt="Hello, reply 'hi' only."
+            resp =self.chatbot.ask(
+                prompt="Hello, reply 'hi' only.",
+                conversation_id="",  # 会话ID（不填则会新建）
+                timeout=10,  # 超时时间（默认10秒
+                use_search=False  # 是否使用搜索
             )
 
             return True, ""
@@ -99,13 +102,16 @@ class TianGongAdapter(llm.LLMLibAdapter):
 
         random_int = random.randint(0, 1000000000)
 
-        resp =await (self.chatbot.ask(
+        resp =self.chatbot.ask(
             prompt=prompt,
-        ))
+            conversation_id="",  # 会话ID（不填则会新建）
+            timeout=10,  # 超时时间（默认10秒
+            use_search=True  # 是否使用搜索
+        )
 
         yield response.Response(
             id=random_int,
             finish_reason=response.FinishReason.NULL,
-            normal_message=resp['texts'],
+            normal_message=resp['text'],
             function_call=None
         )
